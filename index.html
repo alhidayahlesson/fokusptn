@@ -2,125 +2,714 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>StudyFlow — Belajar Terarah</title>
 <style>
-:root{--bg:#f6f7fb;--card:#fff;--text:#182033;--muted:#6b7280;--line:#e7e9ef;--primary:#635bff;--primary2:#5148e5;--green:#16834b;--yellow:#a66500;--red:#bd3030}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.app{min-height:100vh}.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:20}.logo{font-size:22px;font-weight:900;cursor:pointer}.logo span{color:var(--primary)}.top-actions{display:flex;gap:8px}.btn{border:0;border-radius:11px;padding:11px 16px;font-weight:750}.primary{background:var(--primary);color:#fff}.primary:hover{background:var(--primary2)}.secondary{background:#eeedff;color:var(--primary2)}.ghost{background:transparent;color:var(--muted)}.danger{background:#fff0f0;color:var(--red)}.layout{display:flex}.sidebar{width:235px;min-height:calc(100vh - 68px);background:#fff;border-right:1px solid var(--line);padding:18px;position:fixed;top:68px;bottom:0}.nav{display:grid;gap:6px}.nav button{width:100%;text-align:left;background:transparent;border:0;padding:12px;border-radius:11px;color:var(--muted);font-weight:700}.nav button.active,.nav button:hover{background:#f0efff;color:var(--primary2)}.side-card{margin-top:20px;padding:15px;border:1px solid var(--line);border-radius:15px;background:#f8f7ff}.content{margin-left:235px;width:calc(100% - 235px);padding:34px}.container{max-width:1100px;margin:auto}.hero{padding:45px 0 35px;display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center}.eyebrow{display:inline-block;background:#eeedff;color:var(--primary2);padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900}.hero h1{font-size:clamp(42px,6vw,68px);line-height:1.02;margin:18px 0}.hero h1 span{color:var(--primary)}.hero p{font-size:18px;color:var(--muted);line-height:1.7}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:0 7px 25px rgba(20,25,40,.04);padding:22px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.stat strong{display:block;font-size:31px}.muted{color:var(--muted)}.progress{height:9px;background:#eceef4;border-radius:99px;overflow:hidden}.progress div{height:100%;background:var(--primary);border-radius:99px}.grid{display:grid;gap:14px}.grid3{grid-template-columns:repeat(3,1fr)}.grid2{grid-template-columns:repeat(2,1fr)}.subject{cursor:pointer;transition:.15s}.subject:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(20,25,40,.08)}.icon{width:48px;height:48px;border-radius:14px;background:#eeedff;color:var(--primary);display:grid;place-items:center;font-weight:900}.row{display:flex;justify-content:space-between;align-items:center;gap:15px}.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:900}.lots{background:#eaf8ef;color:var(--green)}.mots{background:#fff4dd;color:var(--yellow)}.hots{background:#ffe8e8;color:var(--red)}.topic{display:flex;align-items:center;gap:14px;cursor:pointer}.num{width:40px;height:40px;border-radius:12px;background:#f0f1f5;display:grid;place-items:center;font-weight:900}.lesson{max-width:820px;margin:auto}.lesson h1{font-size:42px;margin:10px 0}.lesson h2{margin-top:28px}.formula{padding:20px;background:#f7f5ff;border-radius:13px;text-align:center;font-size:25px;font-weight:850}.choice{display:block;width:100%;padding:14px;text-align:left;background:#fff;border:1px solid var(--line);border-radius:11px;margin-top:9px}.choice:hover{border-color:var(--primary);background:#faf9ff}.choice.selected{border-color:var(--primary);background:#f0efff}.choice.correct{border-color:#35a66c;background:#ecfaf2}.choice.wrong{border-color:#e55;background:#fff0f0}.question{margin-bottom:14px}.notice{padding:14px;border-radius:12px;background:#f7f5ff;color:#4c46a9}.footer-note{text-align:center;color:var(--muted);padding:40px}.modal{position:fixed;inset:0;background:rgba(10,15,30,.45);display:grid;place-items:center;z-index:50;padding:20px}.modalbox{background:#fff;border-radius:18px;width:min(460px,100%);padding:25px}.input{width:100%;padding:12px;border:1px solid var(--line);border-radius:10px;margin-top:7px}.schedule-item{padding:15px;border:1px solid var(--line);border-radius:12px;display:grid;grid-template-columns:130px 1fr auto;gap:15px;align-items:center}.achievement{min-height:145px}@media(max-width:850px){.sidebar{display:none}.content{margin-left:0;width:100%;padding:22px 14px}.hero{grid-template-columns:1fr;gap:25px}.stats,.grid3,.grid2{grid-template-columns:1fr}.topbar{padding:0 14px}.top-actions .btn:not(.primary){display:none}.schedule-item{grid-template-columns:1fr}.hero h1{font-size:46px}}
+:root {
+  --bg: #f6f7fb;
+  --card: #ffffff;
+  --text: #182033;
+  --muted: #6b7280;
+  --line: #e7e9ef;
+  --primary: #635bff;
+  --primary2: #5148e5;
+  --primary-soft: #eeedff;
+  --green: #16834b;
+  --green-soft: #eaf8ef;
+  --yellow: #a66500;
+  --yellow-soft: #fff4dd;
+  --red: #bd3030;
+  --red-soft: #fff0f0;
+  --sidebar-w: 250px;
+  --topbar-h: 64px;
+  --radius: 16px;
+  --shadow: 0 8px 28px rgba(20,25,40,.06);
+}
+[data-theme="dark"] {
+  --bg: #0f1219;
+  --card: #1a1f2e;
+  --text: #e8eaef;
+  --muted: #9ca3af;
+  --line: #2a3142;
+  --primary: #7c75ff;
+  --primary2: #6b63f0;
+  --primary-soft: #2a2748;
+  --green-soft: #1a2e24;
+  --yellow-soft: #2e2618;
+  --red-soft: #2e1a1a;
+  --shadow: 0 8px 28px rgba(0,0,0,.35);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+button, input, textarea, select { font: inherit; }
+button { cursor: pointer; border: none; background: none; }
+.hidden { display: none !important; }
+.app { min-height: 100vh; }
+
+/* Topbar */
+.topbar {
+  height: var(--topbar-h);
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+.logo {
+  font-size: 20px;
+  font-weight: 900;
+  cursor: pointer;
+  letter-spacing: -0.02em;
+}
+.logo span { color: var(--primary); }
+.top-actions { display: flex; gap: 8px; align-items: center; }
+.btn {
+  border-radius: 12px;
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: .15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn:active { transform: scale(0.97); }
+.primary { background: var(--primary); color: #fff; }
+.primary:hover { background: var(--primary2); }
+.secondary { background: var(--primary-soft); color: var(--primary2); }
+.ghost { background: transparent; color: var(--muted); }
+.ghost:hover { color: var(--text); background: var(--bg); }
+.danger { background: var(--red-soft); color: var(--red); }
+.sm { padding: 8px 12px; font-size: 13px; }
+
+/* Layout */
+.layout { display: flex; }
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: calc(100vh - var(--topbar-h));
+  background: var(--card);
+  border-right: 1px solid var(--line);
+  padding: 16px 12px;
+  position: fixed;
+  top: var(--topbar-h);
+  bottom: 0;
+  overflow-y: auto;
+  z-index: 30;
+}
+.nav { display: grid; gap: 4px; }
+.nav button {
+  width: 100%;
+  text-align: left;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: var(--muted);
+  font-weight: 650;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav button.active, .nav button:hover {
+  background: var(--primary-soft);
+  color: var(--primary2);
+}
+.side-card {
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--bg);
+}
+.side-card b { font-size: 15px; }
+.side-card p { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+.content {
+  margin-left: var(--sidebar-w);
+  width: calc(100% - var(--sidebar-w));
+  padding: 28px 24px 100px;
+  min-height: calc(100vh - var(--topbar-h));
+}
+.container { max-width: 960px; margin: 0 auto; }
+
+/* Landing */
+.hero {
+  padding: 48px 0 36px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 40px;
+  align-items: center;
+}
+.eyebrow {
+  display: inline-block;
+  background: var(--primary-soft);
+  color: var(--primary2);
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+.hero h1 {
+  font-size: clamp(36px, 5.5vw, 58px);
+  line-height: 1.05;
+  margin: 16px 0 12px;
+  letter-spacing: -0.03em;
+}
+.hero h1 span { color: var(--primary); }
+.hero p { font-size: 17px; color: var(--muted); line-height: 1.65; margin-bottom: 22px; }
+
+/* Cards & UI */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px;
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.stat strong { display: block; font-size: 26px; letter-spacing: -0.02em; }
+.stat .label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+.muted { color: var(--muted); }
+.progress {
+  height: 8px;
+  background: var(--line);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.progress > div {
+  height: 100%;
+  background: var(--primary);
+  border-radius: 99px;
+  transition: width .4s ease;
+}
+.grid { display: grid; gap: 12px; }
+.grid2 { grid-template-columns: repeat(2, 1fr); }
+.grid3 { grid-template-columns: repeat(3, 1fr); }
+.grid4 { grid-template-columns: repeat(4, 1fr); }
+
+.subject-card, .topic-card, .chapter-card {
+  cursor: pointer;
+  transition: .15s;
+}
+.subject-card:hover, .topic-card:hover, .chapter-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(20,25,40,.1);
+}
+.icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  background: var(--primary-soft);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 18px;
+}
+.row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+}
+.lots { background: var(--green-soft); color: var(--green); }
+.mots { background: var(--yellow-soft); color: var(--yellow); }
+.hots { background: var(--red-soft); color: var(--red); }
+.lock { background: var(--line); color: var(--muted); }
+
+.topic-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  transition: .15s;
+}
+.topic-row:hover { border-color: var(--primary); background: var(--primary-soft); }
+.num {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--bg);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+/* Lesson */
+.lesson { max-width: 780px; margin: 0 auto; }
+.lesson h1 { font-size: 34px; margin: 8px 0 6px; letter-spacing: -0.02em; }
+.lesson h2 { margin-top: 24px; font-size: 18px; }
+.formula {
+  padding: 18px;
+  background: var(--primary-soft);
+  border-radius: 12px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  margin: 12px 0;
+}
+.choice {
+  display: block;
+  width: 100%;
+  padding: 13px 16px;
+  text-align: left;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  margin-top: 8px;
+  font-weight: 550;
+  transition: .12s;
+}
+.choice:hover { border-color: var(--primary); background: var(--primary-soft); }
+.choice.selected { border-color: var(--primary); background: var(--primary-soft); }
+.choice.correct { border-color: #35a66c; background: var(--green-soft); }
+.choice.wrong { border-color: #e55; background: var(--red-soft); }
+.question { margin-bottom: 12px; }
+.notice {
+  padding: 13px 16px;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  color: var(--primary2);
+  font-size: 14px;
+}
+
+/* Schedule */
+.schedule-item {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 120px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Focus */
+.focus-screen {
+  text-align: center;
+  padding: 40px 20px;
+  max-width: 420px;
+  margin: 0 auto;
+}
+.focus-timer {
+  font-size: 64px;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  margin: 20px 0;
+  font-variant-numeric: tabular-nums;
+}
+.focus-controls { display: flex; gap: 10px; justify-content: center; margin-top: 24px; }
+
+/* Modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,15,30,.5);
+  display: grid;
+  place-items: center;
+  z-index: 60;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+}
+.modalbox {
+  background: var(--card);
+  border-radius: 18px;
+  width: min(440px, 100%);
+  padding: 24px;
+  box-shadow: 0 20px 50px rgba(0,0,0,.2);
+}
+.input, .textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  margin-top: 6px;
+  background: var(--bg);
+  color: var(--text);
+}
+.textarea { min-height: 90px; resize: vertical; }
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text);
+  color: var(--card);
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 650;
+  font-size: 14px;
+  z-index: 100;
+  opacity: 0;
+  transition: .3s;
+  pointer-events: none;
+  max-width: 90%;
+  text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* Bottom nav mobile */
+.bottom-nav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  padding: 8px 6px calc(8px + env(safe-area-inset-bottom));
+  z-index: 40;
+  justify-content: space-around;
+}
+.bottom-nav button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 4px;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 650;
+}
+.bottom-nav button.active { color: var(--primary); }
+.bottom-nav button span { font-size: 18px; }
+
+/* Achievement card */
+.ach-card {
+  text-align: center;
+  padding: 18px 12px;
+  min-height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  opacity: .45;
+  transition: .2s;
+}
+.ach-card.unlocked { opacity: 1; }
+.ach-card .ach-icon { font-size: 28px; }
+
+/* Confetti canvas */
+#confetti { position: fixed; inset: 0; pointer-events: none; z-index: 200; }
+
+/* Empty */
+.empty {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--muted);
+}
+.empty .big { font-size: 40px; margin-bottom: 12px; }
+
+/* Mobile */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .content {
+    margin-left: 0;
+    width: 100%;
+    padding: 20px 14px 90px;
+  }
+  .bottom-nav { display: flex; }
+  .hero { grid-template-columns: 1fr; gap: 24px; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .grid3, .grid2, .grid4 { grid-template-columns: 1fr; }
+  .topbar { padding: 0 14px; }
+  .top-actions .btn:not(.primary):not(.icon-btn) { display: none; }
+  .schedule-item { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 36px; }
+  .lesson h1 { font-size: 28px; }
+}
+@media (min-width: 901px) {
+  .bottom-nav { display: none !important; }
+}
+
+/* Search */
+.search-box {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  color: var(--text);
+  margin-bottom: 16px;
+}
 </style>
 </head>
-<body>
-<div id="app"></div>
+<body style="background:#f6f7fb;margin:0">
+<noscript><div style="padding:40px;text-align:center;font-family:system-ui">StudyFlow membutuhkan JavaScript. Aktifkan JS di browser Anda.</div></noscript>
+<div id="app"><div style="padding:40px;text-align:center;color:#6b7280;font-family:system-ui">Memuat StudyFlow…</div></div>
+<canvas id="confetti"></canvas>
+<div id="toast" class="toast"></div>
+
 <script>
-const QUESTIONS=[
-{level:"LOTS",q:"Bentuk umum persamaan kuadrat adalah...",o:["ax² + bx + c = 0","ax + b = 0","a/x + b = 0","ax³ + bx² = 0"],a:0,e:"Bentuk umum persamaan kuadrat adalah ax² + bx + c = 0 dengan a ≠ 0."},
-{level:"LOTS",q:"Pada persamaan 2x² + 3x - 5 = 0, nilai a adalah...",o:["-5","3","2","0"],a:2,e:"Koefisien x² adalah 2, sehingga a = 2."},
-{level:"LOTS",q:"Persamaan kuadrat memiliki pangkat tertinggi...",o:["1","2","3","4"],a:1,e:"Disebut kuadrat karena pangkat tertingginya adalah 2."},
-{level:"LOTS",q:"Jika diskriminan D > 0, persamaan kuadrat memiliki...",o:["dua akar real berbeda","satu akar real","tidak ada akar real","selalu akar nol"],a:0,e:"Diskriminan positif menunjukkan dua akar real berbeda."},
-{level:"LOTS",q:"Rumus ABC digunakan untuk mencari...",o:["gradien","akar persamaan kuadrat","luas lingkaran","turunan"],a:1,e:"Rumus ABC merupakan cara umum mencari akar persamaan kuadrat."},
-{level:"MOTS",q:"Akar-akar x² - 5x + 6 = 0 adalah...",o:["1 dan 6","2 dan 3","-2 dan -3","0 dan 6"],a:1,e:"Faktorkan menjadi (x-2)(x-3)=0, sehingga x=2 atau x=3."},
-{level:"MOTS",q:"Nilai diskriminan dari x² + 4x + 1 = 0 adalah...",o:["12","16","20","4"],a:0,e:"D = b² - 4ac = 16 - 4 = 12."},
-{level:"MOTS",q:"Jika x² - 7x + 10 = 0, jumlah akar-akarnya adalah...",o:["10","7","-7","-10"],a:1,e:"Jumlah akar = -b/a = 7."},
-{level:"MOTS",q:"Persamaan x² - 9 = 0 memiliki akar...",o:["3 dan -3","9 dan -9","0 dan 9","1 dan -9"],a:0,e:"x² = 9 sehingga x = ±3."},
-{level:"MOTS",q:"Persamaan dengan akar 2 dan 5 adalah...",o:["x²+7x+10=0","x²-7x+10=0","x²-3x+10=0","x²+3x-10=0"],a:1,e:"Jumlah akar 7 dan hasil kali 10, sehingga persamaannya x² - 7x + 10 = 0."},
-{level:"HOTS",q:"Sebuah persegi panjang memiliki luas 48 cm². Panjangnya 2 cm lebih besar dari lebarnya. Persamaan untuk lebarnya x adalah...",o:["x²+2x-48=0","x²-2x-48=0","2x²+x-48=0","x²+48x-2=0"],a:0,e:"Luas = x(x+2)=48, sehingga x²+2x-48=0."},
-{level:"HOTS",q:"Dua bilangan positif berjumlah 10 dan hasil kalinya maksimum. Pasangan bilangan tersebut adalah...",o:["1 dan 9","2 dan 8","5 dan 5","4 dan 6"],a:2,e:"Untuk jumlah tetap, hasil kali maksimum terjadi ketika kedua bilangan sama."},
-{level:"HOTS",q:"Parameter k membuat x² - 6x + k = 0 memiliki tepat satu akar real. Nilai k adalah...",o:["3","6","9","12"],a:2,e:"Tepat satu akar berarti D=0: 36-4k=0, jadi k=9."},
-{level:"HOTS",q:"Jika grafik y=x²-4x+p menyinggung sumbu-x, nilai p adalah...",o:["2","4","8","16"],a:1,e:"Syarat menyinggung sumbu-x adalah D=0: 16-4p=0, jadi p=4."},
-{level:"HOTS",q:"Sebuah bilangan ditambah kuadratnya menghasilkan 20. Bilangan positifnya adalah...",o:["4","5","6","10"],a:0,e:"x²+x=20 → x²+x-20=0 → (x+5)(x-4)=0, ambil x=4."}
-];
-const subjects=[
-{name:"Matematika",icon:"∑",topics:["Persamaan Linear","Persamaan Kuadrat","Fungsi","Geometri","Trigonometri","Statistika"]},
-{name:"Bahasa Indonesia",icon:"A",topics:["Teks Eksplanasi","Teks Argumentasi","Kaidah Bahasa"]},
-{name:"Bahasa Inggris",icon:"EN",topics:["Grammar","Reading","Vocabulary"]},
-{name:"Fisika",icon:"Φ",topics:["Gerak","Gaya","Energi"]},
-{name:"Kimia",icon:"⚗",topics:["Atom","Ikatan Kimia","Stoikiometri"]},
-{name:"Biologi",icon:"BIO",topics:["Sel","Genetika","Ekosistem"]}
-];
-let state=JSON.parse(localStorage.getItem("studyflow")||"{}");
-state.user=state.user||{name:"Student",email:"student@studyflow.local"};
-state.scores=state.scores||{};
-state.streak=state.streak||7;
-state.schedule=state.schedule||[
-{time:"19:00 – 19:30",title:"Matematika — Persamaan Kuadrat",done:false},
-{time:"19:30 – 20:00",title:"Bahasa Inggris — Grammar",done:false}
-];
-function save(){localStorage.setItem("studyflow",JSON.stringify(state))}
-function el(id){return document.getElementById(id)}
-function render(){
- if(!state.logged){landing();return}
- shell(location.hash.slice(1)||"dashboard");
-}
-function landing(){
- el("app").innerHTML=`<div class="app"><header class="topbar"><div class="logo"><span>Study</span>Flow</div><button class="btn primary" onclick="login()">Mulai Belajar</button></header>
- <main class="container"><section class="hero"><div><span class="eyebrow">LEARNING SYSTEM</span><h1>Belajar terarah.<br><span>Paham beneran.</span></h1><p>Pelajari materi, uji pemahaman, lalu naik dari LOTS ke MOTS hingga HOTS dengan alur belajar yang jelas.</p><button class="btn primary" onclick="login()">Mulai Belajar →</button></div>
- <div class="card"><div class="muted">PROGRESS MINGGU INI</div><div class="row" style="margin:10px 0"><strong style="font-size:34px">72%</strong><b>🔥 7 hari</b></div><div class="progress"><div style="width:72%"></div></div><div class="grid" style="margin-top:20px">${["📖 Baca materi","🟢 LOTS","🟡 MOTS","🔴 HOTS"].map((x,i)=>`<div class="card" style="padding:13px;border-radius:12px"><div class="row"><span>${x}</span><span class="muted">${i<2?"✓":"Next"}</span></div></div>`).join("")}</div></div></section>
- <section style="padding:40px 0 70px"><h2>Satu alur belajar yang jelas.</h2><p class="muted">Pahami konsep dulu, baru naik tingkat.</p><div class="grid grid2" style="margin-top:20px">${[["01","Materi","Baca konsep, contoh, dan rangkuman."],["02","LOTS","Pastikan konsep dasar sudah dikuasai."],["03","MOTS","Terapkan konsep pada masalah."],["04","HOTS","Latih analisis dan problem solving."]].map(x=>`<div class="card"><b style="color:var(--primary)">${x[0]}</b><h3>${x[1]}</h3><p class="muted">${x[2]}</p></div>`).join("")}</div></section></main></div>`;
-}
-function login(){
- state.logged=true;save();location.hash="dashboard";render();
-}
-function shell(page){
- const nav=[["dashboard","⌂","Dashboard"],["subjects","📚","Materi"],["progress","📊","Progress"],["schedule","🗓","Jadwal"]];
- el("app").innerHTML=`<header class="topbar"><div class="logo" onclick="go('dashboard')"><span>Study</span>Flow</div><div class="top-actions"><button class="btn ghost" onclick="go('profile')">👤 ${state.user.name}</button><button class="btn danger" onclick="logout()">Keluar</button></div></header><div class="layout"><aside class="sidebar"><div class="nav">${nav.map(n=>`<button class="${page===n[0]?'active':''}" onclick="go('${n[0]}')">${n[1]} &nbsp; ${n[2]}</button>`).join("")}</div><div class="side-card"><b>🔥 ${state.streak} hari</b><p class="muted" style="font-size:13px">Sedikit konsisten setiap hari.</p></div></aside><main class="content"><div class="container" id="view"></div></main></div>`;
- const routes={dashboard:dashboard,subjects:subjectsPage,progress:progressPage,schedule:schedulePage,profile:profilePage};
- (routes[page]||dashboard)();
-}
-function go(page){location.hash=page;render()}
-function logout(){state.logged=false;save();location.hash="";render()}
-function dashboard(){
- el("view").innerHTML=`<div class="row"><div><p class="muted">Kamis, 3 September 2026</p><h1 style="margin:0">Selamat datang 👋</h1><p class="muted">Siap belajar hari ini?</p></div><button class="btn primary" onclick="go('subjects')">Lanjut Belajar →</button></div>
- <div class="stats" style="margin-top:24px">${[["72%","Progress minggu ini"],["2","Target hari ini"],["🔥 "+state.streak,"Streak belajar"]].map(x=>`<div class="card stat"><strong>${x[0]}</strong><span class="muted">${x[1]}</span></div>`).join("")}</div>
- <h2 style="margin-top:30px">Continue learning</h2><div class="card"><div class="row"><div style="flex:1"><span class="badge mots">MOTS</span><h3>Persamaan Kuadrat</h3><p class="muted">Matematika · 20 menit</p><div class="progress"><div style="width:60%"></div></div></div><button class="btn primary" onclick="lesson()">Lanjut</button></div></div>
- <h2 style="margin-top:30px">Rekomendasi</h2><div class="grid grid3">${subjects.slice(0,3).map(s=>`<div class="card subject" onclick="subject('${s.name}')"><div class="icon">${s.icon}</div><h3>${s.name}</h3><p class="muted">${s.topics.length} topik tersedia</p></div>`).join("")}</div>`;
-}
-function subjectsPage(){
- el("view").innerHTML=`<h1>Mata Pelajaran</h1><p class="muted">Pilih mata pelajaran untuk mulai belajar.</p><div class="grid grid3" style="margin-top:24px">${subjects.map(s=>`<div class="card subject" onclick="subject('${s.name}')"><div class="icon">${s.icon}</div><h3>${s.name}</h3><p class="muted">Lihat topik →</p></div>`).join("")}</div>`;
-}
-function subject(name){
- const s=subjects.find(x=>x.name===name);
- el("view").innerHTML=`<button class="btn ghost" onclick="go('subjects')">← Kembali</button><p class="muted">Mata Pelajaran</p><h1>${name}</h1><div class="grid" style="margin-top:22px">${s.topics.map((t,i)=>`<div class="card topic" onclick="${name==="Matematika"&&t==="Persamaan Kuadrat"?"lesson()":"alert('Materi demo ini akan ditambahkan pada versi berikutnya.')"}"><div class="num">${i+1}</div><div style="flex:1"><b>${t}</b><p class="muted" style="margin:4px 0">Materi · LOTS · MOTS · HOTS</p></div><span>→</span></div>`).join("")}</div>`;
-}
-function lesson(){
- el("view").innerHTML=`<div class="lesson"><span class="eyebrow">MATEMATIKA</span><h1>Persamaan Kuadrat</h1><p class="muted">Pelajari bentuk umum, akar-akar, faktorisasi, rumus ABC, dan diskriminan.</p>
- <div class="card"><h2>Tujuan Pembelajaran</h2><ul><li>Memahami bentuk umum persamaan kuadrat.</li><li>Menentukan akar dengan faktorisasi.</li><li>Menggunakan diskriminan dan rumus ABC.</li></ul></div>
- <div class="card" style="margin-top:14px"><h2>1. Bentuk Umum</h2><p>Persamaan kuadrat dapat ditulis sebagai:</p><div class="formula">ax² + bx + c = 0</div><p class="muted">dengan a ≠ 0.</p><h2>2. Diskriminan</h2><ul><li>D &gt; 0 → dua akar real berbeda.</li><li>D = 0 → satu akar real kembar.</li><li>D &lt; 0 → tidak memiliki akar real.</li></ul><h2>3. Rangkuman</h2><p class="muted">Kuasai bentuk umum, faktorisasi, rumus ABC, dan diskriminan sebelum latihan.</p></div>
- <div class="card" style="margin-top:14px"><div class="notice">🔒 Setelah materi selesai, LOTS terbuka. MOTS terbuka jika LOTS ≥ 70%, dan HOTS terbuka jika MOTS ≥ 70%.</div><button class="btn primary" style="margin-top:14px" onclick="startQuiz('LOTS')">Saya Sudah Memahami Materi →</button></div></div>`;
-}
-function startQuiz(level){
- const qs=QUESTIONS.filter(q=>q.level===level);
- const old=state.scores[level]??null;
- el("view").innerHTML=`<div class="lesson"><div class="row"><div><p class="muted">Persamaan Kuadrat</p><h1 style="margin:0">Latihan ${level}</h1></div><span class="badge ${level.toLowerCase()}">${level}</span></div><p class="muted">${qs.length} soal · Jawab semua soal lalu lihat pembahasan.</p>${qs.map((q,i)=>`<div class="card question"><b>${i+1}. ${q.q}</b><div>${q.o.map((o,j)=>`<button class="choice" id="q${i}-${j}" onclick="selectAnswer(${i},${j})">${String.fromCharCode(65+j)}. ${o}</button>`).join("")}</div></div>`).join("")}<button class="btn primary" onclick="finishQuiz('${level}')">Selesaikan Latihan →</button>${old!=null?`<p class="muted">Nilai terakhir: ${old}%</p>`:""}</div>`;
- window.answers={};
-}
-function selectAnswer(i,j){
- window.answers=window.answers||{};
- window.answers[i]=j;
- QUESTIONS.filter(q=>q.level==="LOTS"||q.level==="MOTS"||q.level==="HOTS");
- const qs=QUESTIONS.filter(q=>q.level===document.querySelector(".badge").textContent);
- qs[i].o.forEach((_,k)=>{const b=el(`q${i}-${k}`);if(b)b.classList.toggle("selected",k===j)});
-}
-function finishQuiz(level){
- const qs=QUESTIONS.filter(q=>q.level===level);
- let correct=0; qs.forEach((q,i)=>{if(window.answers?.[i]===q.a)correct++});
- const score=Math.round(correct/qs.length*100);
- state.scores[level]=score;save();
- const next=level==="LOTS"?"MOTS":level==="MOTS"?"HOTS":null;
- el("view").innerHTML=`<div class="lesson"><div class="card" style="text-align:center;padding:35px"><div style="font-size:54px">${score>=70?"🎉":"📖"}</div><p class="muted">Hasil Latihan ${level}</p><h1 style="font-size:54px;margin:5px">${score}%</h1><p>${correct} dari ${qs.length} jawaban benar</p>${score>=70?`<div class="notice">Keren! Kamu sudah melewati batas 70%.</div>`:`<div class="notice">Belum 70%. Review materi lalu coba lagi.</div>`}</div><h2>Pembahasan</h2>${qs.map((q,i)=>`<div class="card" style="margin-top:10px"><b>${i+1}. ${q.q}</b><p>Jawaban benar: <strong>${q.o[q.a]}</strong></p><p class="muted">${q.e}</p></div>`).join("")}<div class="card" style="margin-top:14px">${score>=70&&next?`<button class="btn primary" onclick="startQuiz('${next}')">Buka ${next} →</button>`:""} <button class="btn secondary" onclick="startQuiz('${level}')">Coba Lagi</button> <button class="btn ghost" onclick="go('progress')">Lihat Progress</button></div></div>`;
-}
-function progressPage(){
- const lots=state.scores.LOTS??0,mots=state.scores.MOTS??0,hots=state.scores.HOTS??0;
- el("view").innerHTML=`<h1>Progress Belajar</h1><p class="muted">Pantau perkembanganmu.</p><div class="stats" style="margin-top:24px">${[["LOTS",lots+"%"],["MOTS",mots+"%"],["HOTS",hots+"%"]].map(x=>`<div class="card stat"><span class="badge ${x[0].toLowerCase()}">${x[0]}</span><strong style="margin-top:10px">${x[1]}</strong><div class="progress"><div style="width:${x[1]}"></div></div></div>`).join("")}</div><div class="card" style="margin-top:14px"><h2>Persamaan Kuadrat</h2><p class="muted">Progress latihan ditentukan dari hasil terakhir.</p><div class="progress"><div style="width:${Math.round((lots+(mots||0)+(hots||0))/3)}%"></div></div></div><div class="grid grid2" style="margin-top:14px"><div class="card"><h3>✅ Sudah dikuasai</h3><p class="muted">Bentuk umum · Akar · Diskriminan</p></div><div class="card"><h3>⚠️ Perlu ditingkatkan</h3><p class="muted">${hots<70?"Analisis soal HOTS":"Pertahankan konsistensi"}</p></div></div>`;
-}
-function schedulePage(){
- el("view").innerHTML=`<div class="row"><div><h1>Jadwal Belajar</h1><p class="muted">Atur waktu belajar supaya lebih konsisten.</p></div><button class="btn primary" onclick="addSchedule()">+ Tambah Jadwal</button></div><div class="card" style="margin-top:24px"><div class="grid">${state.schedule.map((s,i)=>`<div class="schedule-item"><b>${s.time}</b><span style="${s.done?'text-decoration:line-through;color:var(--muted)':''}">${s.title}</span><button class="btn ${s.done?'secondary':'ghost'}" onclick="toggleSchedule(${i})">${s.done?"✓":"☐"}</button></div>`).join("")}</div></div>`;
-}
-function toggleSchedule(i){state.schedule[i].done=!state.schedule[i].done;save();schedulePage()}
-function addSchedule(){const title=prompt("Materi/judul belajar:");if(!title)return;const time=prompt("Waktu, contoh 20:00 – 20:30:","20:00 – 20:30");if(!time)return;state.schedule.push({title,time,done:false});save();schedulePage()}
-function profilePage(){
- el("view").innerHTML=`<h1>Profile</h1><div class="card" style="max-width:600px;margin-top:24px"><div class="icon">👤</div><h2>${state.user.name}</h2><p class="muted">${state.user.email}</p><div class="grid grid2" style="margin-top:20px"><div><b>🔥 Streak</b><p>${state.streak} hari</p></div><div><b>🏆 Achievement</b><p>First Step · 7 Days</p></div></div></div>`;
-}
-window.addEventListener("hashchange",render);render();
-</script>
-</body>
-</html>
+/* ===================== DATA ===================== */
+const SUBJECTS = [
+  {
+    id: "matematika",
+    name: "Matematika",
+    icon: "∑",
+    color: "#635bff",
+    chapters: [
+      {
+        id: "aljabar",
+        name: "Aljabar",
+        topics: [
+          { id: "bilangan-berpangkat", name: "Bilangan Berpangkat", status: "coming" },
+          { id: "bentuk-akar", name: "Bentuk Akar", status: "coming" },
+          { id: "persamaan-linear", name: "Persamaan Linear", status: "coming" },
+          { id: "pertidaksamaan", name: "Pertidaksamaan", status: "coming" },
+          { id: "sistem-persamaan", name: "Sistem Persamaan", status: "coming" }
+        ]
+      },
+      {
+        id: "persamaan-fungsi",
+        name: "Persamaan & Fungsi",
+        topics: [
+          {
+            id: "persamaan-kuadrat",
+            name: "Persamaan Kuadrat",
+            status: "ready",
+            goals: [
+              "Memahami bentuk umum persamaan kuadrat",
+              "Menentukan akar dengan faktorisasi",
+              "Menggunakan diskriminan dan rumus ABC"
+            ],
+            content: `
+              <h2>1. Bentuk Umum</h2>
+              <p>Persamaan kuadrat dapat ditulis sebagai:</p>
+              <div class="formula">ax² + bx + c = 0</div>
+              <p class="muted">dengan a ≠ 0. Koefisien a, b, dan c adalah bilangan real.</p>
+              <h2>2. Diskriminan</h2>
+              <p>Diskriminan D = b² − 4ac menentukan sifat akar:</p>
+              <ul style="margin:10px 0 10px 20px;line-height:1.8">
+                <li><b>D &gt; 0</b> → dua akar real berbeda</li>
+                <li><b>D = 0</b> → satu akar real kembar (akar ganda)</li>
+                <li><b>D &lt; 0</b> → tidak memiliki akar real</li>
+              </ul>
+              <h2>3. Rumus ABC</h2>
+              <div class="formula">x = (−b ± √D) / 2a</div>
+              <h2>4. Faktorisasi</h2>
+              <p>Jika persamaan dapat difaktorkan menjadi (x − p)(x − q) = 0, maka akar-akarnya adalah x = p dan x = q.</p>
+              <h2>5. Jumlah & Hasil Kali Akar</h2>
+              <p>Untuk ax² + bx + c = 0:</p>
+              <ul style="margin:10px 0 10px 20px;line-height:1.8">
+                <li>Jumlah akar = −b/a</li>
+                <li>Hasil kali akar = c/a</li>
+              </ul>
+              <h2>Rangkuman</h2>
+              <p class="muted">Kuasai bentuk umum, faktorisasi, rumus ABC, dan diskriminan sebelum latihan.</p>
+            `,
+            summary: "Bentuk umum ax²+bx+c=0. Diskriminan D=b²−4ac. Rumus ABC: x=(−b±√D)/2a. Jumlah akar = −b/a, hasil kali = c/a."
+          },
+          { id: "fungsi-kuadrat", name: "Fungsi Kuadrat", status: "coming" },
+          { id: "fungsi-linear", name: "Fungsi Linear", status: "coming" }
+        ]
+      },
+      {
+        id: "geometri",
+        name: "Geometri",
+        topics: [
+          { id: "bangun-datar", name: "Bangun Datar", status: "coming" },
+          { id: "bangun-ruang", name: "Bangun Ruang", status: "coming" },
+          { id: "pythagoras", name: "Teorema Pythagoras", status: "coming" },
+          { id: "kesebangunan", name: "Kesebangunan", status: "coming" }
+        ]
+      },
+      {
+        id: "statistika",
+        name: "Statistika & Peluang",
+        topics: [
+          { id: "mean-median", name: "Mean, Median, Modus", status: "coming" },
+          { id: "penyajian-data", name: "Penyajian Data", status: "coming" },
+          { id: "peluang", name: "Peluang", status: "coming" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "biologi",
+    name: "Biologi",
+    icon: "BIO",
+    color: "#16a34a",
+    chapters: [
+      {
+        id: "sel",
+        name: "Sel",
+        topics: [
+          { id: "struktur-sel", name: "Struktur Sel", status: "coming" },
+          { id: "organel", name: "Organel", status: "coming" },
+          { id: "transport-membran", name: "Transport Membran", status: "coming" },
+          { id: "pembelahan-sel", name: "Pembelahan Sel", status: "coming" }
+        ]
+      },
+      {
+        id: "genetika",
+        name: "Genetika",
+        topics: [
+          { id: "dna-rna", name: "DNA & RNA", status: "coming" },
+          { id: "gen", name: "Gen", status: "coming" },
+          { id: "kromosom", name: "Kromosom", status: "coming" },
+          { id: "pewarisan", name: "Pewarisan Sifat", status: "coming" }
+        ]
+      },
+      {
+        id: "ekologi",
+        name: "Ekologi",
+        topics: [
+          { id: "ekosistem", name: "Ekosistem", status: "coming" },
+          { id: "rantai-makanan", name: "Rantai Makanan", status: "coming" },
+          { id: "populasi", name: "Populasi", status: "coming" }
+        ]
+      },
+      {
+        id: "sistem-tubuh",
+        name: "Sistem Tubuh",
+        topics: [
+          { id: "pencernaan", name: "Pencernaan", status: "coming" },
+          { id: "pernapasan", name: "Pernapasan", status: "coming" },
+          { id: "peredaran", name: "Peredaran Darah", status: "coming" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "kimia",
+    name: "Kimia",
+    icon: "⚗",
+    color: "#0891b2",
+    chapters: [
+      {
+        id: "atom",
+        name: "Atom",
+        topics: [
+          { id: "struktur-atom", name: "Struktur Atom", status: "coming" },
+          { id: "konfigurasi", name: "Konfigurasi Elektron", status: "coming" },
+          { id: "sistem-periodik", name: "Sistem Periodik", status: "coming" }
+        ]
+      },
+      {
+        id: "ikatan",
+        name: "Ikatan",
+        topics: [
+          { id: "ikatan-ion", name: "Ikatan Ion", status: "coming" },
+          { id: "ikatan-kovalen", name: "Ikatan Kovalen", status: "coming" },
+          { id: "ikatan-logam", name: "Ikatan Logam", status: "coming" }
+        ]
+      },
+      {
+        id: "stoikiometri",
+        name: "Stoikiometri",
+        topics: [
+          { id: "mol", name: "Mol", status: "coming" },
+          { id: "massa-molar", name: "Massa Molar", status: "coming" },
+          { id: "persamaan-reaksi", name: "Persamaan Reaksi", status: "coming" },
+          { id: "pereaksi-pembatas", name: "Pereaksi Pembatas", status: "coming" }
+        ]
+      },
+      {
+        id: "larutan",
+        name: "Larutan",
+        topics: [
+          { id: "konsentrasi", name: "Konsentrasi", status: "coming" },
+          { id: "asam-basa", name: "Asam-Basa", status: "coming" },
+          { id: "ph", name: "pH", status: "coming" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "fisika",
+    name: "Fisika",
+    icon: "Φ",
+    color: "#d97706",
+    chapters: [
+      {
+        id: "mekanika",
+        name: "Mekanika",
+        topics: [
+          { id: "besaran", name: "Besaran & Satuan", status: "coming" },
+          { id: "vektor", name: "Vektor", status: "coming" },
+          { id: "gerak-lurus", name: "Gerak Lurus", status: "coming" },
+          { id: "hukum-newton", name: "Hukum Newton", status: "coming" },
+          { id: "usaha-energi", name: "Usaha & Energi", status: "coming" }
+        ]
+      },
+      {
+        id: "fluida",
+        name: "Fluida",
+        topics: [
+          { id: "tekanan", name: "Tekanan", status: "coming" },
+          { id: "fluida-statis", name: "Fluida Statis", status: "coming" }
+        ]
+      },
+      {
+        id: "gelombang",
+        name: "Gelombang",
+        topics: [
+          { id: "getaran", name: "Getaran", status: "coming" },
+          { id: "gelombang", name: "Gelombang", status: "coming" },
+          { id: "bunyi", name: "Bunyi", status: "coming" }
+        ]
+      },
+      {
+        id: "listrik",
+        name: "Listrik",
+        topics: [
+          { id: "muatan", name: "Muatan", status: "coming" },
+          { id: "arus", name: "Arus & Tegangan", status: "coming" },
+          { id: "ohm", name: "Hukum Ohm", status: "coming" }
+        ]
+      }
+    ]
+  },
+  {
+    id: "bahasa-inggris",
+    name: "Bahasa Inggris",
+    icon: "EN",
+    color: "#2563eb",
+    chapters: [
+      {
+        id: "grammar",
+        name: "Basic Grammar",
+        topics: [
+          { id: "tenses", name: "Tenses", status: "coming" },
+          { id: "modal", name: "Modal Verbs", status: "coming" },
+          { id: "passive", name: "Passive Voice", status: "coming" },
+          { id: "conditional", name: "Conditional Sentences", status: "coming" }
+        ]
+      },
+      {
+        id: "reading",
+        name: "Reading & Text",
+        topics: [
+          { id: "descriptive", name: "Descriptive Text", status: "coming" },
+          { id: "narrative", name: "Narrative Text", status: "coming" },
+          { id: "procedure", name: "Procedure Text", status: "coming" },
+          { id: "analytical", name: "Analytical Exposition", status: "coming" }
+        ]
